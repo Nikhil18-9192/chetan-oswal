@@ -37,13 +37,20 @@ export default Vue.extend ({
                  phone: '+91 9890 828242'
                 }
               }
-        
             }
 });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .top-header{
     background: #f2f2f2;
     padding: 10px;
+    
+    .link{
+        display: flex;
+
+        .email{
+            display: flex;
+        }
+    }
 }
 </style>
