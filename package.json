@@ -9,12 +9,17 @@
     "generate": "nuxt-ts generate"
   },
   "dependencies": {
+    "@nuxtjs/device": "^1.2.7",
     "@nuxt/typescript-runtime": "^1.0.0",
+    "@nuxtjs/style-resources": "^1.0.0",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
+    "node-sass": "^4.14.1",
     "nuxt": "^2.14.0",
+    "sass": "^1.26.10",
     "sass-loader": "^10.0.2",
-    "scss-loader": "0.0.1"
+    "scss-loader": "0.0.1",
+    "webpack": "^4.44.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.0",

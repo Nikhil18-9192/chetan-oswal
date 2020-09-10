@@ -3,7 +3,7 @@
      <div class="top-header">
          <div class="container">
              <div class="links">
-                 <div class="email">
+                 <div class="email border-right">
                      <div class="logo">
                         <img src="/envelop.svg" alt="img">
                  </div>
@@ -19,23 +19,33 @@
                     <a href="tel:+919890828242">{{ contactInfo.phone }}</a>
                  </div>
                  </div>
-                 
+
              </div>
          </div>
+     </div>
+     <div class="logo-img">
+         <img src="/logo.png" alt="logo">
+     </div>
+     <AppButton v-if="$device.isMobile" />
+     <MobileMenu v-if="$store.state.menu"/>
+     <div class="menu" v-if="$device.isDesktopOrTablet">
+         <nuxt-link to='`/${item}`' v-for="(item, i) in menu" :key="i"><p>{{ item }}</p></nuxt-link>
      </div>
 </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import contactInfo from '../utils'
-export default Vue.extend ({
-    
+import AppButton from '@/components/AppButton.vue'
+import MobileMenu from '@/components/MobileMenu.vue'
+export default  Vue.extend({
+    components:{AppButton},
     data(){
         return{
             contactInfo:{
                  mail:'ca.chetanoswal@gmail.com',
                  phone: '+91 9890 828242'
-                }
+                },
+            menu:['Home', 'What We Do', 'Who We Are', 'Gallery', 'Quick Links', 'Insights', 'Contact us']
               }
             }
 });
@@ -43,13 +53,75 @@ export default Vue.extend ({
 <style lang="scss" scoped>
 .top-header{
     background: #f2f2f2;
-    padding: 10px;
+    padding: 7px;
     
-    .link{
+    .links{
         display: flex;
+        justify-content: flex-end;
+
+        @include for-phone-only{
+            flex-direction: column;
+        } 
+        
+        .border-right{
+            border-right: 1px solid #4d4d4d;
+        }
 
         .email{
             display: flex;
+            margin-left: 10px;
+
+              @include for-phone-only{
+                  justify-content: center;
+            }
+
+            .logo img{
+                margin-right: 10px;
+            }
+
+            .text a{
+                font-family: Nunito;
+                font-style: normal;
+                font-weight: 300;
+                font-size: 14px;
+                line-height: 19px;
+                text-decoration: none;
+                color: #4d4d4d;
+                padding-right: 10px;
+            }
+        }
+    }
+}
+.logo-img{
+    padding: 25px 0;
+    text-align: center;
+
+     @include for-phone-only{
+         padding: 10px 0;
+         text-align: left;
+     }
+     @include for-phone-only-landscape{
+        text-align: left;
+    } 
+    img{
+        max-width: 250px;
+        width: 100%;
+    }
+}
+.menu{
+    background: #073D5F;
+    display: flex;
+    justify-content: center;
+    a{
+        margin-right: 40px;
+        text-decoration: none;
+        padding: 10px;
+        &:hover{background: #083049;}
+
+        p{
+            font-size: 15px;
+            line-height: 20px;
+            color: #fff;
         }
     }
 }
